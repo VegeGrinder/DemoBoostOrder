@@ -6,8 +6,9 @@ Unzip project into your XAMPP directory “./xampp/htdocs”, which becomes “.
 3) Go to phpMyAdmin -> create database “demoboostorder”
 4) Go to Laravel project root directory -> ./xampp/htdocs/DemoBoostOrder
 5) Run “composer install”
-6) Run “php artisan key:generate”
-7) Run “php artisan migrate”
-8) Run “php artisan db:seed –class=CreateUsersSeeder”
-9) Run “php artisan serve”
-10) Go to “127.0.0.1:8000”
+6) Rename ".env.example" to ".env" in root directory
+7) Run “php artisan key:generate”
+8) Run “php artisan migrate”
+9) Run “php artisan db:seed –class=CreateUsersSeeder”
+10) Run “php artisan serve”
+11) Go to “127.0.0.1:8000”
