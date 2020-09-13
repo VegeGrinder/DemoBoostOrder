@@ -52,7 +52,7 @@ class HomeController extends Controller
         {
             if($result[$i]['catalog_visibility'] == 'hidden')
             {
-                array_splice($result, $i, 1);
+                array_splice($result, $i, 1);   //delete those with catelogue visibility = false
                 $total_products--;
             }
         }
@@ -108,10 +108,10 @@ class HomeController extends Controller
             $order_product->product_name = $request->product_name[$i];
             $order_product->product_quantity = $request->product_quantity[$i];
 
-            $order_product->save();
+            $order_product->save(); //save each order product with order as foreign key
         }
 
-        Auth::user()->carts->each->delete();
+        Auth::user()->carts->each->delete();    //collection must be accessed using each or for loop
 
         return redirect()->route('orders')->with('success','Order '.$order->id.' created successfully!');
     }
@@ -151,6 +151,7 @@ class HomeController extends Controller
             
             if(!is_null($notification))
             {
+                //add "updated" icon beside orders in User Nav bar
                 return "<a class='nav-link' href='" . route('orders') . "/" . $notification->id . "'>Orders <span class='badge badge-secondary'>Updated!</span></a>";
             }
             else
@@ -163,7 +164,7 @@ class HomeController extends Controller
     public function adminHome()
     {
         $orders = Order::all();
-        $pending_count = $orders->where('status', 0)->count();
+        $pending_count = $orders->where('status', 0)->count();  //get total pending orders count which is status = 0
 
         return view('adminHome')->with(compact('orders', 'pending_count'));
     }
@@ -179,8 +180,8 @@ class HomeController extends Controller
     public function adminChangeStatus(Request $request)
     {
         $order = Order::find($request->order_id);
-        $order->status = $request->status;
-        $order->notification = true;
+        $order->status = $request->status;  //0 is pending; 1 is accepted; 2 is rejected
+        $order->notification = true;    //activate notification for user
         $order->save();
 
         return response()->json(['success' => true]);
