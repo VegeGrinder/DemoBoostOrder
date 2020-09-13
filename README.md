@@ -12,3 +12,4 @@ Unzip project into your XAMPP directory “./xampp/htdocs”, which becomes “.
 9) Run “php artisan db:seed –class=CreateUsersSeeder”
 10) Run “php artisan serve”
 11) Go to “127.0.0.1:8000”
+Remember to check “.env” for database configuration if problem persists
